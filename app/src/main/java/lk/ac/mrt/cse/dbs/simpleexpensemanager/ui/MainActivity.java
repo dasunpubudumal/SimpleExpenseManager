@@ -16,6 +16,8 @@
 
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.ui;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -28,6 +30,7 @@ import android.support.v7.widget.Toolbar;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.InMemoryDemoExpenseManager;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.helper.AccountDBHelper;
 
 public class MainActivity extends AppCompatActivity {
     private ExpenseManager expenseManager;
@@ -63,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+//        Instantiating the database connection.
+//        AccountDBHelper accountDBHelper = new AccountDBHelper(this);
+//        SQLiteDatabase db = accountDBHelper.getWritableDatabase();
 
         /***  Begin generating dummy data for In-Memory implementation  ***/
         expenseManager = new InMemoryDemoExpenseManager();
