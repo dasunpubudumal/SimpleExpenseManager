@@ -16,6 +16,8 @@
 
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.control;
 
+import android.content.Context;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -90,6 +92,9 @@ public abstract class ExpenseManager implements Serializable {
     public void addAccount(String accountNo, String bankName, String accountHolderName, double initialBalance) {
         Account account = new Account(accountNo, bankName, accountHolderName, initialBalance);
         accountsHolder.addAccount(account);
+
+
+
     }
 
     /***

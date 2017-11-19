@@ -12,6 +12,7 @@ import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.exception.InvalidAccountExcep
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.helper.AccountDBHelper;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.Account;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.model.ExpenseType;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.ui.MainActivity;
 
 /**
  * Created by dasun on 11/18/17.
@@ -51,7 +52,7 @@ public class PersistentMemoryAccountDAO  implements AccountDAO {
 
     @Override
     public void addAccount(Account account) {
-        AccountDBHelper accountDBHelper = new AccountDBHelper(mContext);
+        AccountDBHelper accountDBHelper = AccountDBHelper.getInstance(mContext);
         SQLiteDatabase db = accountDBHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -60,7 +61,7 @@ public class PersistentMemoryAccountDAO  implements AccountDAO {
         values.put( this.BANK_NAME, account.getBankName());
         values.put( this.ACCOUNT_HOLDER, account.getAccountHolderName());
 
-        db.insert("student", null, values);
+        db.insert("account", null, values);
 
     }
 

@@ -10,8 +10,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AccountDBHelper extends SQLiteOpenHelper{
 
+    private static AccountDBHelper sInstance;
+
     private static final String DB_NAME = "account.db";
     private static final String DB_VERSION = "1";
+
+    public static synchronized AccountDBHelper getInstance(Context context) {
+        if(sInstance == null){
+            sInstance = new AccountDBHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
 
     public AccountDBHelper(Context context) {
         super(context, DB_NAME, null, Integer.parseInt(DB_VERSION));

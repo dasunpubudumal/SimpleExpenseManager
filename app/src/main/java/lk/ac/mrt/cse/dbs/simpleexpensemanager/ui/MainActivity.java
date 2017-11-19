@@ -30,9 +30,11 @@ import android.support.v7.widget.Toolbar;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.R;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.ExpenseManager;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.InMemoryDemoExpenseManager;
+import lk.ac.mrt.cse.dbs.simpleexpensemanager.control.PersistentExpenseManager;
 import lk.ac.mrt.cse.dbs.simpleexpensemanager.data.helper.AccountDBHelper;
 
 public class MainActivity extends AppCompatActivity {
+    private  MainActivity mainActivity;
     private ExpenseManager expenseManager;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mainActivity = this;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,9 +75,15 @@ public class MainActivity extends AppCompatActivity {
 //        SQLiteDatabase db = accountDBHelper.getWritableDatabase();
 
         /***  Begin generating dummy data for In-Memory implementation  ***/
-        expenseManager = new InMemoryDemoExpenseManager();
+//        expenseManager = new InMemoryDemoExpenseManager();
+        expenseManager = new PersistentExpenseManager(this);
         /*** END ***/
     }
+
+    public MainActivity getMainActivity() {
+        return mainActivity;
+    }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
